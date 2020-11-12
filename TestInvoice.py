@@ -4,8 +4,8 @@ from Invoice import Invoice
 
 @pytest.fixture()
 def products():
-    products = {'Pen': {'qnt': 10, 'unit_price': 3.75, 'discount': 5},
-                'Notebook': {'qnt': 5, 'unit_price': 7.5, 'discount': 10}}
+    products = {'Pen': {'qnt': 10, 'unit_price': 3.75, 'discount': 5, 'tax': 5},
+                'Notebook': {'qnt': 5, 'unit_price': 7.5, 'discount': 10, 'tax': 10}}
     return products
 
 
@@ -28,3 +28,9 @@ def test_CanCalculateTotalDiscount(invoice, products):
 def test_CanCalculateTotalPurePrice(invoice, products):
     invoice.totalPurePrice(products)
     assert invoice.totalPurePrice(products) == 69.38
+
+
+def test_CanCalculateTotalPriceTax(invoice, products):
+    invoice.totalPriceTax(products)
+    assert invoice.totalPriceTax(products) == 6.94
+
